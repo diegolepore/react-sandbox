@@ -1,43 +1,23 @@
-import React from 'react'
-import { getImageUrl } from '../utils';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../store/store';
+import { fetchTodos, selectAllTodos } from '../store/todos/todoSlice';
 
 const TodoList = () => {
-  const description = 'Hedy Lamarr'
+  const dispatch = useDispatch();
+  const todos = useAppSelector(selectAllTodos);
 
-  const person = {
-    name: 'Hedy Lamarr',
-    imageId: 'yXOvdOS',
-    imageSize: 's',
-    theme: {
-      backgroundColor: 'black',
-      color: 'pink'
-    }
-  };
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
   return (
-    <div style={ person.theme }>
-      <h1>{ person.name }'s Todos</h1>
-      <img 
-        src={ getImageUrl(person) }
-        alt={ description }
-        className="photo"
-      />
-      
-      {/* 
-        - The next time you see {{ and }} in JSX, know that it’s nothing more than an object inside the JSX curlies! 
-        - Inline style properties are written in camelCase. For example, HTML <ul style="background-color: black"> would be written as <ul style={{ backgroundColor: 'black' }}>  in your component.
-      */}
-      
-      <ul style={{
-        backgroundColor: '#000',
-        color: 'pink',
-      }}>
-          <li>Invent new traffic lights</li>
-          <li>Rehearse a movie scene</li>
-          <li>Improve the spectrum technology</li>
-      </ul>
-    </div>
-  )
-}
+    <ul>
+      {todos.map(todo => (
+        <li key={todo.id}>{todo.title}</li>
+      ))}
+    </ul>
+  );
+};
 
-export default TodoList
+export default TodoList;

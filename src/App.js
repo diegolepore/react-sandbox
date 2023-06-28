@@ -5,6 +5,9 @@ import Avatar from './components/Avatar';
 import Profile from './components/Profile';
 import Gallery from './components/Gallery';
 import PackingList from './components/PackingList';
+import StoryTrail from './components/StoryTrail';
+import GalleryWithPagination from './components/GalleryWithPagination';
+import Counter from './components/Counter';
 
 function App() {
 
@@ -16,19 +19,37 @@ function App() {
     size: 200
   }
 
+  const stories = [
+    {
+      id: 1,
+      label: 'first story',
+    },
+    {
+      id: 2,
+      label: 'second story',
+    },
+  ]
+
   return (
     <div>
       <h1>Hello, world!! 😃</h1>
 
-      <PackingList />
+      <Counter />
       
-      <Gallery />
+      <TodoList />
+
+      {/* <StoryTrail stories={stories} /> */}
+
+      {/* <PackingList /> */}
+      
+      {/* <GalleryWithPagination /> */}
+      
+      {/* <Gallery /> */}
       
       {/* <Profile /> */}
 
       {/* <Button /> */}
       
-      {/* <TodoList /> */}
 
       {/* https://react.dev/learn/passing-props-to-a-component#forwarding-props-with-the-jsx-spread-syntax */}
       {/* <Avatar
