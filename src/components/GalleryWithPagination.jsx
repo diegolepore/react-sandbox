@@ -7,7 +7,6 @@ const GalleryWithPagination = () => {
   const [showMore, setShowMore] = useState(false)
   const hasNext = index < sculptureList.length - 1
 
-
   function handleNextClick() {
     if(hasNext) {
       setIndex(index + 1)
